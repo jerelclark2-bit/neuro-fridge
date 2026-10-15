@@ -8,7 +8,13 @@ This repo was empty, so this is a **new browser-based MVP** rebuilt from the ori
 
 ### Running it
 
-Open `index.html` in a browser. No dependencies or sign-in are required.
+The browser app uses JavaScript modules, so run it through a local web server (double-clicking the HTML file may not work). Python 3 is enough:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`. No dependency installation or sign-in required.
 
 For the web version, enable GitHub Pages for `main` / `(root)` in the repository settings. The address will be:
 
