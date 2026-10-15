@@ -6,6 +6,14 @@ Scan a barcode with a USB scanner (or type one in), add the item, and see what's
 
 This repo was empty, so this is a **new browser-based MVP** rebuilt from the original barcode-inventory concept. It is not a recovered copy of the earlier Python prototype.
 
+**[OPEN NEUROFRIDGE](https://jerelclark2-bit.github.io/neuro-fridge/)** · [Check tests](https://github.com/jerelclark2-bit/neuro-fridge/actions/workflows/tests.yml)
+
+### How it's put together
+
+The UI is plain HTML, CSS, and JavaScript. `inventory-core.js` contains the item validation, quantity changes, expiration-date logic, and CSV export. `app.js` handles the interface and saves the inventory to `localStorage`.
+
+This is intentionally a **single-browser MVP**. It doesn't pretend to sync across devices or recognize arbitrary products from the internet. Sample barcode names are just examples. Automated tests check duplicate entries, quantity changes, expiry classification, and safe CSV escaping.
+
 ### Running it
 
 The browser app uses JavaScript modules, so run it through a local web server (double-clicking the HTML file may not work). Python 3 is enough:
@@ -16,9 +24,7 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`. No dependency installation or sign-in required.
 
-For the web version, enable GitHub Pages for `main` / `(root)` in the repository settings. The address will be:
-
-https://jerelclark2-bit.github.io/neuro-fridge/
+The browser demo is hosted with GitHub Pages at https://jerelclark2-bit.github.io/neuro-fridge/.
 
 ### What it does
 
