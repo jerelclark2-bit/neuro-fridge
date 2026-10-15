@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182b38">
+  <meta name="description" content="A little barcode-based fridge inventory tracker.">
+  <title>NEUROFRIDGE — your fridge, on screen</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell bar-inner">
+      <div class="logo"><span class="logo-icon" aria-hidden="true">▣</span> NEURO<span>FRIDGE</span><small>v1.0 // pantry console</small></div>
+      <a class="github" href="https://github.com/jerelclark2-bit/neuro-fridge">SOURCE ↗</a>
+    </div>
+  </header>
+  <main class="shell">
+    <div class="hero">
+      <div><p class="eyebrow">SMART INVENTORY, SIMPLE START.</p><h1>Know what's <em>in the fridge.</em></h1><p class="intro">Scan it. Stock it. Use it. No spreadsheets taped to the freezer.</p></div>
+      <div class="hero-sticker" aria-hidden="true"><span>🥛</span><b>NO MORE<br>GUESSING</b></div>
+    </div>
+    <section class="stats" aria-label="Inventory overview">
+      <div class="stat"><strong id="totalItems">0</strong><span>DIFFERENT ITEMS</span></div>
+      <div class="stat"><strong id="totalUnits">0</strong><span>TOTAL UNITS</span></div>
+      <div class="stat warn-stat"><strong id="soonItems">0</strong><span>EXPIRING SOON</span></div>
+      <div class="stat bad-stat"><strong id="expiredItems">0</strong><span>PAST DATE</span></div>
+    </section>
+    <div class="columns">
+      <section class="panel" aria-labelledby="addTitle">
+        <div class="panel-title"><span class="marker">01</span><h2 id="addTitle">Put something in</h2></div>
+        <p class="panel-help">Type a barcode, or scan one with a USB barcode scanner. Unknown product? Add its name yourself.</p>
+        <form id="addForm" novalidate>
+          <label for="barcode">BARCODE <span>(OPTIONAL)</span></label>
+          <input id="barcode" name="barcode" inputmode="text" placeholder="scan / type barcode" autocomplete="off">
+          <label for="name">PRODUCT NAME</label>
+          <input id="name" name="name" maxlength="80" placeholder="milk, eggs, leftovers..." autocomplete="off" required>
+          <div class="two-inputs">
+            <div><label for="quantity">QUANTITY</label><input id="quantity" name="quantity" type="number" min="1" max="9999" step="1" value="1" required></div>
+            <div><label for="expires">BEST BY <span>(OPTIONAL)</span></label><input id="expires" name="expires" type="date"></div>
+          </div>
+          <p id="formMessage" class="message" role="status" aria-live="polite"></p>
+          <button class="primary" type="submit">+ ADD TO FRIDGE <span>↗</span></button>
+        </form>
+        <div class="try">
+          <b>TRY A SAMPLE BARCODE</b>
+          <div class="sample-buttons">
+            <button type="button" data-code="012345678905">MILK</button>
+            <button type="button" data-code="036000291452">EGGS</button>
+            <button type="button" data-code="049000028911">JUICE</button>
+          </div>
+          <small>Sample codes are demo data, not a real barcode catalog.</small>
+        </div>
+      </section>
+      <section class="panel inventory-panel" aria-labelledby="invTitle">
+        <div class="panel-title"><span class="marker">02</span><h2 id="invTitle">Inside the fridge</h2></div>
+        <div class="toolbar">
+          <label class="sr-only" for="search">Search your food</label>
+          <input id="search" type="search" placeholder="Search items or barcodes..." autocomplete="off">
+          <label class="sr-only" for="filter">Filter inventory</label>
+          <select id="filter"><option value="all">All food</option><option value="soon">Expiring soon</option><option value="expired">Past date</option><option value="undated">No date</option></select>
+        </div>
+        <p class="list-note">Use + and − to update quantities. When something hits zero, it disappears.</p>
+        <div id="inventory" class="inventory-list" aria-live="polite"></div>
+        <div class="inventory-bottom">
+          <button id="export" type="button" class="light">↓ EXPORT CSV</button>
+          <button id="clear" type="button" class="quiet">EMPTY FRIDGE</button>
+        </div>
+      </section>
+    </div>
+    <aside class="note"><b>HEADS UP:</b> Everything is saved in <strong>this browser only</strong>. Different browsers or devices won't share the same inventory. Export a CSV if you want a backup. For physical barcodes, any scanner that types into a text field works.</aside>
+  </main>
+  <footer class="shell">NEUROFRIDGE © 2026 <span>AN EXPERIMENT BY JEREL CLARK</span> <a href="https://github.com/jerelclark2-bit/neuro-fridge">GITHUB ↗</a></footer>
+</body>
+</html>
